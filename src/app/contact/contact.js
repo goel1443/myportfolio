@@ -1,18 +1,86 @@
 'use client'
-import { useState } from 'react'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCheckCircle, FaExclamationCircle, FaSpinner } from 'react-icons/fa'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
+  const [errorMessage, setErrorMessage] = useState('')
+  const formRef = useRef(null)
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage('Name is required')
+      return false
+    }
+    if (!formData.email.trim()) {
+      setErrorMessage('Email is required')
+      return false
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setErrorMessage('Please enter a valid email address')
+      return false
+    }
+    if (!formData.message.trim()) {
+      setErrorMessage('Message is required')
+      return false
+    }
+    if (formData.message.trim().length < 10) {
+      setErrorMessage('Message must be at least 10 characters long')
+      return false
+    }
+    return true
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log(formData)
+    
+    // Clear previous status
+    setSubmitStatus(null)
+    setErrorMessage('')
+    
+    // Validate form
+    if (!validateForm()) {
+      setSubmitStatus('error')
+      return
+    }
+
+    setIsLoading(true)
+
+    try {
+      const result = await emailjs.sendForm(
+        'service_ua817lp',        // Your Service ID
+        'template_u4dhev8',       // Your Template ID
+        formRef.current,
+        'vwq1pDJuCnOzwKhlY'       // Your Public Key
+      )
+      
+      console.log('Message sent successfully:', result.text)
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', message: '' })
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null)
+      }, 5000)
+      
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setSubmitStatus('error')
+      
+      // Provide specific error messages
+      if (error.text) {
+        setErrorMessage(`Failed to send message: ${error.text}`)
+      } else if (error.status) {
+        setErrorMessage(`Server error (${error.status}). Please try again later.`)
+      } else {
+        setErrorMessage('Network error. Please check your connection and try again.')
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const socialLinks = [
@@ -60,51 +128,82 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
             <h2 className="text-2xl font-bold text-[#1e293b] mb-6">Send Me a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3">
+                <FaCheckCircle className="text-green-500 text-xl" />
+                <p className="text-green-700 font-medium">Message sent successfully! I'll get back to you soon.</p>
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3">
+                <FaExclamationCircle className="text-red-500 text-xl" />
+                <p className="text-red-700 font-medium">{errorMessage}</p>
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} ref={formRef} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Name
+                  Your Name *
                 </label>
                 <input
                   type="text"
                   id="name"
+                  name="user_name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#19B5C4] focus:border-transparent outline-none transition-all"
+                  disabled={isLoading}
                   required
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Email
+                  Your Email *
                 </label>
                 <input
                   type="email"
                   id="email"
+                  name="user_email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#19B5C4] focus:border-transparent outline-none transition-all"
+                  disabled={isLoading}
                   required
                 />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Your Message
+                  Your Message *
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#19B5C4] focus:border-transparent outline-none transition-all resize-none"
+                  disabled={isLoading}
                   required
                 />
+                <p className="text-sm text-gray-500 mt-1">Minimum 10 characters</p>
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#19B5C4] text-white py-3 rounded-lg font-medium hover:bg-[#17a3b1] transition-colors"
+                disabled={isLoading}
+                className="w-full bg-[#19B5C4] text-white py-3 rounded-lg font-medium hover:bg-[#17a3b1] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
-                Send Message
+                {isLoading ? (
+                  <>
+                    <FaSpinner className="animate-spin" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <span>Send Message</span>
+                )}
               </button>
             </form>
           </div>
@@ -158,5 +257,3 @@ export default function Contact() {
     </div>
   )
 }
-
-
