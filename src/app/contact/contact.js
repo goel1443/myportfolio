@@ -133,7 +133,7 @@ export default function Contact() {
             {submitStatus === 'success' && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3">
                 <FaCheckCircle className="text-green-500 text-xl" />
-                <p className="text-green-700 font-medium">Message sent successfully! I'll get back to you soon.</p>
+                <p className="text-green-700 font-medium">Message sent successfully! I&apos;ll get back to you soon.</p>
               </div>
             )}
             
