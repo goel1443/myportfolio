@@ -34,7 +34,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Hello, I am Parteek
+              Hello, I am 
               <br />
               <span className="font-normal bg-gradient-to-r from-[#19B5C4] to-[#17a3b1] text-transparent bg-clip-text">
                 Web Designer and Frontend Developer
