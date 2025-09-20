@@ -53,7 +53,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-[#1e293b] mb-4">Get In Touch</h1>
-          <p className="text-xl text-gray-600">Let's work together on your next project</p>
+          <p className="text-xl text-gray-600">Let&apos;s work together on your next project</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

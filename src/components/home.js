@@ -48,7 +48,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            I'm a passionate web designer and frontend developer with expertise in creating 
+            I&apos;m a passionate web designer and frontend developer with expertise in creating 
             beautiful, responsive websites. I specialize in modern UI/UX design and 
             clean, efficient code that brings designs to life.
           </motion.p>
