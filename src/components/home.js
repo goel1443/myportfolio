@@ -10,7 +10,7 @@ export default function Home() {
       <div className="absolute top-0 right-0 w-1/3 h-screen bg-[#19B5C4] opacity-5 rounded-bl-full" />
       <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-[#19B5C4] opacity-5 rounded-tr-full" />
 
-      <div className="grid grid-cols-12 p-4 sm:p-8 lg:p-12 items-center gap-4 sm:gap-8 relative">
+      <div className="grid grid-cols-12 p-4 sm:p-8 lg:p-12 lg:px-12 px-4 lg:pt-12 pt-24 items-center gap-4 sm:gap-8 relative">
         {/* Left Content */}
         <div className="col-span-12 xl:col-span-7 2xl:col-span-6 space-y-6 sm:space-y-8 order-2 xl:order-1">
           <div className="space-y-3 sm:space-y-4">
