@@ -55,8 +55,8 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <div className="min-h-screen p-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="h-screen p-12 lg:px-12 px-4 lg:pt-12 pt-24">
+      <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-[#1e293b]">Professional Experience</h1>
         <p className="text-xl text-gray-600 mb-12">My journey in web development and design</p>
 
@@ -66,16 +66,16 @@ export default function Experience() {
 
           {/* Experience items */}
           {experiences.map((exp, index) => (
-            <div key={index} className="relative mb-12 ml-12">
+            <div key={index} className="relative mb-12 sm:ml-12 ml-6">
               {/* Timeline dot and line */}
-              <div className="absolute -left-[2.7rem] flex items-center">
+              <div className="absolute sm:left-[-2.7rem] left-[-1.2rem] flex items-center">
                 <div className={`w-2 h-2 rounded-full ${exp.current ? 'bg-green-500' : 'bg-[#19B5C4]'}`}></div>
-                <div className="h-0.5 w-8 bg-[#19B5C4]"></div>
+                <div className="h-0.5 sm:w-8 w-0 bg-[#19B5C4]  "></div>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg">
                 {/* Header */}
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex flex-wrap justify-between items-start mb-4">
                   <div>
                     <div className="flex items-center gap-2">
                       <h3 className="text-xl font-bold text-[#1e293b]">{exp.position}</h3>
@@ -87,11 +87,11 @@ export default function Experience() {
                     </div>
                     <p className={exp.companyColor}>{exp.company}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                  <div className=" flex sm:flex-col gap-1   sm:items-end items-start ">
+                    <p className="text-sm text-gray-600 bg-gray-50 px-3 py-1 rounded-full min-w-fit">
                       {exp.period}
                     </p>
-                    <p className="text-sm text-gray-600 mt-1">{exp.location}</p>
+                    <p className="text-sm text-gray-600 mt-1 ">{exp.location}</p>
                   </div>
                 </div>
 

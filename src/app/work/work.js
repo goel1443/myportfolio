@@ -39,7 +39,7 @@ const projects = [
 
 export default function Work() {
   return (
-    <div className="min-h-screen p-12">
+    <div className="h-screen p-12 lg:px-12 px-4 lg:pt-12 pt-24">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-[#1e293b]">My Work</h1>
         <p className="text-xl text-gray-600 mb-12">Showcasing some of my best projects</p>

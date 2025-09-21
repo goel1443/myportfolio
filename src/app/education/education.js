@@ -32,8 +32,8 @@ const education = [
 
 export default function Education() {
   return (
-    <div className="min-h-screen p-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="h-screen p-12 lg:px-12 px-4 lg:pt-12 pt-24">
+      <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">Education</h1>
         <p className="text-xl text-gray-600 mb-12">My academic journey and qualifications</p>
 
@@ -45,17 +45,17 @@ export default function Education() {
           {education.map((edu, index) => (
             <div key={index} className="relative mb-12">
               {/* Timeline dot */}
-              <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/4 w-4 h-4 bg-[#19B5C4] rounded-full border-4 border-white"></div>
+              <div className="absolute left-[-6px] md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/4 w-4 h-4 bg-[#19B5C4] rounded-full border-4 border-white"></div>
 
-              <div className={`ml-8 md:ml-0 ${index % 2 === 0 ? 'md:mr-[50%] md:pr-12' : 'md:ml-[50%] md:pl-12'}`}>
-                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className={`ml-4 md:ml-0 ${index % 2 === 0 ? 'md:mr-[50%] md:pr-12' : 'md:ml-[50%] md:pl-12'}`}>
+                <div className="bg-white rounded-xl xl:p-6 p-4 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex justify-between items-start mb-4">
                     <div className=
                     "max-w-[70%]">
                       <h3 className="text-xl font-bold text-gray-800">{edu.degree}</h3>
                       <p className="text-[#19B5C4] font-medium">{edu.field}</p>
                     </div>
-                    <span className="text-sm font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+                    <span className="text-sm font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full min-w-fit ">
                       {edu.year}
                     </span>
                   </div>

@@ -20,12 +20,10 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
       </head>
       <body className={`${montserrat.variable} font-sans antialiased`}>
-        <div className="flex">
           <Sidebar />
-          <div className="ml-[300px] flex-1">
+          <div className="ml-0 lg:pl-[250px]  h-screen ">
             {children}
           </div>
-        </div>
       </body>
     </html>
   );

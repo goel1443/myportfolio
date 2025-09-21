@@ -117,7 +117,7 @@ export default function Contact() {
   ]
 
   return (
-    <div className="min-h-screen p-12 bg-gray-50">
+    <div className="h-screen p-12 lg:px-12 px-4 lg:pt-12 pt-24 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-[#1e293b] mb-4">Get In Touch</h1>
@@ -126,7 +126,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
+          <div className="bg-white rounded-2xl sm:p-8 p-4 shadow-lg">
             <h2 className="text-2xl font-bold text-[#1e293b] mb-6">Send Me a Message</h2>
             
             {/* Status Messages */}
@@ -211,7 +211,7 @@ export default function Contact() {
           {/* Contact Information */}
           <div className="space-y-8">
             {/* Contact Details */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl sm:p-8 p-4 shadow-lg">
               <h2 className="text-2xl font-bold text-[#1e293b] mb-6">Contact Information</h2>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
@@ -229,7 +229,7 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <div className="bg-white rounded-2xl sm:p-8 p-4 shadow-lg">
               <h2 className="text-2xl font-bold text-[#1e293b] mb-6">Follow Me</h2>
               <div className="space-y-4">
                 {socialLinks.map((social, index) => (

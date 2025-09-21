@@ -17,7 +17,7 @@ const skills = [
   ];
 const Skill = () => {
   return (
-    <div className="min-h-screen p-12">
+    <div className="h-screen p-12 lg:px-12 px-4 lg:pt-12 pt-24">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold mb-8 text-gray-800">My Skills</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
